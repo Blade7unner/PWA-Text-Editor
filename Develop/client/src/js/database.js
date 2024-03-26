@@ -14,13 +14,20 @@ const initdb = async () =>
 
 export const putDb = async (content) => {
   const db = await initdb();
-  await db.put('jate', content);
+  const tx = db.transaction('jate', 'readwrite');
+  const store = tx.objectStore('jate');
+  await store.put({ content });
+  await tx.done;
 };
 
 export const getDb = async () => {
   const db = await initdb();
-  return db.get('jate', 1);
+  const tx = db.transaction('jate', 'readonly');
+  const store = tx.objectStore('jate');
+  const data = await store.getAll();
+  await tx.done;
+  return data;
 };
 
-initdb();
 
+initdb();
