@@ -1,11 +1,11 @@
 {
   "env": {
-    "browser": true
+    "browser": true,
+    "node": true
   },
   "rules": {
-    // Override our default settings just for this directory
     "eqeqeq": "warn",
-    "strict": "off",
+    "strict": ["error", "global"], // Enforce strict mode globally
     "import/no-extraneous-dependencies": "off",
     "import/prefer-default-export": "off",
     "no-underscore-dangle": "off",

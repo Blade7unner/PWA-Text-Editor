@@ -1,20 +1,29 @@
 const express = require('express');
-const path = require('path'); 
+const path = require('path');
 
 const app = express();
-const PORT = process.env.PORT || 3000;
+const port = 3000;
 
-
+// Serve static files from the 'client' directory
 app.use(express.static(path.join(__dirname, '../client')));
 
-app.use(express.urlencoded({ extended: true }));
-app.use(express.json());
-
-
-app.get('/me', (req, res) => {
-  res.send('Hello, it seems like you accessed the "/me" route!');
+// Serve manifest.json from the root URL
+app.get('/manifest.json', (req, res) => {
+  res.sendFile(path.join(__dirname, '../manifest.json'));
 });
 
-require('./routes/htmlRoutes')(app);
+// Serve icons from the '/assets/icons' directory
+app.get('/assets/icons/:iconName', (req, res) => {
+  const iconName = req.params.iconName;
+  res.sendFile(path.join(__dirname, `../client/src/images/logo.png`));
+});
 
-app.listen(PORT, () => console.log(`Now listening on port: ${PORT}`));
+// Serve other routes
+app.get('/', (req, res) => {
+  res.sendFile(path.join(__dirname, '../client/index.html'));
+});
+
+// Start the server
+app.listen(port, () => {
+  console.log(`Server is running on http://localhost:${port}`);
+});
