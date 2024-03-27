@@ -1,0 +1,17 @@
+{
+    "name": "Just Another Text Editor",
+    "short_name": "JATE",
+    "description": "The PWA-Text-Editor is a progressive web application providing an intuitive text editor experience with seamless offline functionality.",
+    "start_url": "/",
+    "display": "standalone",
+    "background_color": "#ffffff",
+    "theme_color": "#ffffff",
+    "icons": [
+      {
+        "src": "assets/icons/icon.png",
+        "sizes": "96x96 128x128 192x192 256x256 384x384 512x512",
+        "type": "image/png"
+      }
+    ]
+  }
+  

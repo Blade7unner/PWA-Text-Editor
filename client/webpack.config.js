@@ -16,44 +16,46 @@ module.exports = () => {
     },
     plugins: [
       new HtmlWebpackPlugin({
-        template: './src/index.html', // Specify the template HTML file
-        filename: 'index.html', // Output HTML filename
+        template: './src/index.html',
+        filename: 'index.html',
       }),
       new WebpackPwaManifest({
-        filename: 'manifest.json', // Output manifest filename
-        name: 'Just Another Text Editor', // Application name
-        short_name: 'JATE', // Short name
+        filename: 'manifest.json',
+        name: 'Just Another Text Editor',
+        short_name: 'JATE', 
+        description: 'The PWA-Text-Editor is a progressive web application providing an intuitive text editor experience with seamless offline functionality.', // Add description
         icons: [
           {
-            src: path.resolve('src/assets/icons/icon.png'), // Path to the icon file
-            sizes: [96, 128, 192, 256, 384, 512], // Icon sizes
-            destination: path.join('assets', 'icons'), // Destination directory for icons
+            src: path.resolve('src/assets/icons/icon.png'),
+            sizes: [96, 128, 192, 256, 384, 512],
+            type: 'image/png', 
+            destination: path.join('assets', 'icons'),
           },
         ],
-        start_url: '/', // Start URL
-        display: 'standalone', // Display mode
-        background_color: '#ffffff', // Background color
-        theme_color: '#ffffff', // Theme color
+        start_url: '/',
+        display: 'standalone',
+        background_color: '#ffffff',
+        theme_color: '#ffffff',
       }),
       new InjectManifest({
-        swSrc: './src-sw.js', // Path to the service worker file
-        swDest: 'service-worker.js', // Output service worker filename
-        exclude: [/\.map$/, /manifest\.json$/, /index\.html$/], // Files to exclude from the service worker
+        swSrc: './src-sw.js',
+        swDest: 'service-worker.js',
+        exclude: [/\.map$/, /manifest\.json$/, /index\.html$/],
       }),
     ],
     module: {
       rules: [
         {
-          test: /\.css$/, // CSS file extension
-          use: ['style-loader', 'css-loader'], // Use style-loader and css-loader
+          test: /\.css$/,
+          use: ['style-loader', 'css-loader'],
         },
         {
-          test: /\.js$/, // JavaScript file extension
-          exclude: /node_modules/, // Exclude node_modules
+          test: /\.js$/,
+          exclude: /node_modules/,
           use: {
-            loader: 'babel-loader', // Use babel-loader for transpiling
+            loader: 'babel-loader',
             options: {
-              presets: ['@babel/preset-env'], // Use @babel/preset-env for JavaScript compilation
+              presets: ['@babel/preset-env'],
             },
           },
         },
