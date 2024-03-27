@@ -4,13 +4,13 @@ const path = require('path');
 const app = express();
 const PORT = process.env.PORT || 3000;
 
-// Serve static files from the 'client' folder in the root directory
+
 app.use(express.static(path.join(__dirname, '../client')));
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
-// Define route handler for GET requests to '/me'
+
 app.get('/me', (req, res) => {
   res.send('Hello, it seems like you accessed the "/me" route!');
 });
